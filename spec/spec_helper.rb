@@ -1,7 +1,4 @@
 require "bundler/setup"
-require 'coveralls'
-Coveralls.wear!
-
 require "watsbot"
 require "pry"
 require "simplecov"

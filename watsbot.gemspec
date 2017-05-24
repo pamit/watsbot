@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "webmock"
   spec.add_development_dependency "simplecov"
   spec.add_development_dependency "dotenv"
-  spec.add_development_dependency "coveralls"
   spec.add_dependency "httparty"
   spec.add_dependency "redis"
   spec.add_dependency "celluloid"
