@@ -1,5 +1,8 @@
 # Watsbot
 
+[![Gem Version](https://badge.fury.io/rb/watsbot.svg)](https://badge.fury.io/rb/watsbot)
+[![Build Status](https://travis-ci.org/pamit/watsbot.svg?branch=master)](https://travis-ci.org/pamit/watsbot)
+
 Talk to [IBM Watson Conversation service](https://www.ibm.com/watson/developercloud/doc/conversation/getting-started.html)!
 
 This gem provides a simple client to communicate with IBM Watson Conversation service using REST API. It utilizes [Redis](https://redis.io/) to store state of the conversation.
