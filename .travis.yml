@@ -9,6 +9,6 @@ script: 'bundle exec rake'
 notifications:
   email:
     recipients:
-      - payam@roundtableapps.com
+      - pamit.edu@gmail.com
     on_failure: change
     on_success: never
