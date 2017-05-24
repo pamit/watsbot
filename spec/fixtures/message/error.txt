@@ -1,0 +1,21 @@
+HTTP/1.1 400 Bad Request
+X-Backside-Transport: FAIL FAIL
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=31536000;
+ETag: W/"37-GiTifP4vb9PqzZCy57Cz7A"
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-DNS-Prefetch-Control: off
+Vary: Accept-Encoding
+X-XSS-Protection: 1; mode=block
+Date: Tue, 23 May 2017 10:59:42 GMT
+Content-Type: application/json;charset=utf-8
+Server: -
+Set-Cookie: Watson-DPAT=AqqzbJRf25aUFnKhzKDjg%2Bmqhdx%2BKMTTg8I9RMzub6jsDkn6kC2ObdYFLwjUBhXglnrH47KPEBaC7dF5G62Gsh9kklkjKX4GLW5j%2BztLAh3dr4tv6jt9qN97W4URreaF99zP0fLHH%2FDvyYxTAw0VSvGpNc5%2B0kC%2FOukrM7EUDXdsgN%2FQdglfeTficysYFhaq%2FXLs6rphgcD5m7x99klh1Bh4aFjaSueecLB%2FEV8WUhb281%2FZIRFKgVE%2F2IB3V8PV3D1oXtTIjJHeumVRc7JGIHcXy%2Ba0DI%2BFAr8zI0mSKz7LqB%2Fq8OWikXssLZW3Noojlq9FX1hNYIMxOup583aeptDJhpSe%2BIV2rCrqAYafVy8s2%2BcLovB3WdHPFmE35cAmm%2BokC1PU4CMXoslsDk5sN97CfwVXaFJdKg1cviKFcw6hwX0aHTauNof8kbXC2aGStG%2F0e8nkXFs2bFAhANJ8u88x57i5ciS8fnry5ZwZZiFxs4qTbOKADuoV3r96ClrwAtodeLdMYJCClMFENb4IMqnMmhgOo8sjHCoDqJH8LHJEVCxxSlgJrb4wcCtVAEJDeVxejl2v5dokRakBWvdG%2BwOvVcgR41LzQ6n8Xj%2BtQ2HfUsfzaHT33KsoXHYFHTcC8elzq5R0z8G6WrGZMAaAtxwwsaGGaKbVKyruGRP0AyYI2QwW9%2FWYUzzXHoTt6r9cQBbru72gyIVDQwGanMSLt6h3QDwXDsTb4I5JVB0E9T3sR1fUt1SEivUBZqipCvgctp%2BbVAKbnZNr4OjDOxL0VbS2WiCvr6p3RGi39KXfH500xUpWJXtcPNi8xLtNjKEVnoancJYZmC20p6WYqnEJAHva4BgkxrDZOsAsxS4XvVSzcyYtxOnBceCsOvMVtt2xYhF68OrShMp9VAJkd75qYoJTHGJQ5BW%2FysMY4djh5xdrtsI4EvvwzvHHLQezcOp2P0d57h%2BqhUY%3D; path=/conversation/api; secure; HttpOnly
+X-Client-IP: 220.101.98.130
+X-Global-Transaction-ID: 1437918292
+X-DP-Watson-Tran-ID: gateway-dp01-1437918292
+
+{"error":{"error":"Missing 'version' query parameter"}}

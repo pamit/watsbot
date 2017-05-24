@@ -1,0 +1,14 @@
+sudo: false
+language: ruby
+cache: bundler
+rvm:
+  - 2.3.3
+before_install: gem install bundler -v 1.15.0
+script: 'bundle exec rake'
+
+notifications:
+  email:
+    recipients:
+      - payam@roundtableapps.com
+    on_failure: change
+    on_success: never

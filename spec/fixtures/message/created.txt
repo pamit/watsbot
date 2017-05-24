@@ -1,0 +1,21 @@
+HTTP/1.1 200 OK
+X-Backside-Transport: OK OK
+Connection: Keep-Alive
+Transfer-Encoding: chunked
+X-Frame-Options: SAMEORIGIN
+Strict-Transport-Security: max-age=31536000;
+ETag: W/"1cd-XPBepDE7HNqNr6wZapZ1+w"
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-DNS-Prefetch-Control: off
+Vary: Accept-Encoding
+X-XSS-Protection: 1; mode=block
+Date: Tue, 23 May 2017 10:26:14 GMT
+Content-Type: application/json;charset=utf-8
+Server: -
+Set-Cookie: Watson-DPAT=1IUyfHxFvm9UhVYgNXBRScD8lDxY2xWsK3xSpNYmKq5YY0exS%2Fqtz55Sxg9Ys6%2F7v18ofQ9%2BhmrP68PBAMHjkJ4jGENioEoqtqWnU4ts4s0D9%2FTj9dniC7UxKdUsw9eUF32Usd4UVuvSb%2BWSEETs2HoL4GTHZxxWa0jeUXgI2CDSsvPpiSypRfvQz8Jqb9naK1TA2qyWOlNxLRvmFlmhdlBGrIXsp9QhgPeEgikZK9d4MZrdZXw6ht2T%2FJo93BsGgzrUf0ForfXw2pjh6MuAIFNTFzzeTkhqTyCF1GOxFmbDCObOgLTO2tuWTpn7pAiLNUL2vsogOWlf0GEsZSh012hpxPsNj0OCigne%2FxyY5Dj9o%2FY0HXvSa17A71qlIrFoYs0kyC5YCuiWOOOMfP56Jf6Ztnu39SVEKGxHRlSiT2udAJMS4t5jm0kF%2BkP%2BhBOHSOgMJGil5x25ArJtM0YfrunF81mskUM77aYUtHE%2BosCYFIgylZ3mH%2BC6mo3eG2qe76Gj1Uu5LQSSPX1Hm5mcnEsiSISyHfSveIKlb7OaYM9kjRHHsbLjnHfy2CZv7nSBKIFQMCiQk4FrRv3meSqCGz%2BmFeKCo04Cs75%2F6ySShVDA1yhJW8LhPaHhnRtXwm0zbFT4hD4qBTbFmW%2FxXdPJcsE%2B40ltYh%2FQ5H6yIAAYykujtkHCigkTrjiIiyPmAgB9zSx7sl934Lf1XVeSsDNJS83jyqOCG804BCZN8bfhRY4%2BxvjR5zD9Rm%2Fy6Rl9n%2BNOIV9F7aV45YTvHRJ%2FEHPDb5AIl9dwqsW0nfaz43KeZ7K9F2cqgHOP7fJCmUE9Q2e%2FkoUikETdW5q5JxuxntQ6BALK%2BtfC%2FbLIJORiDKm4%2FhKtKlBPoRsdANOkpdAe7%2FjugaJWkmPQ7ayYTOfBlHCyZoYUtbSL9AJFFgaq9utrNqe5Fr0VGnQ4TV%2Fn%2BmxcXYlQSTcDGS%2F8mpm0FLDXtqxuIg%3D%3D; path=/conversation/api; secure; HttpOnly
+X-Client-IP: 220.101.98.130
+X-Global-Transaction-ID: 1468324772
+X-DP-Watson-Tran-ID: gateway-dp02-1468324772
+
+{"intents":[{"intent":"Greeting","confidence":1}],"entities":[{"entity":"Greeting","location":[0,2],"value":"Hi","confidence":1}],"input":{"text":"hi"},"output":{"log_messages":[],"text":["Hi, how are you?"],"nodes_visited":["greeting"]},"context":{"conversation_id":"d17270f6-671e-473b-b981-65761a9d5128","system":{"dialog_stack":[{"dialog_node":"greeting"}],"dialog_turn_counter":1,"dialog_request_counter":1,"_node_output_map":{"node_2_1494386292425":[0]}}}}
