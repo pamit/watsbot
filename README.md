@@ -29,9 +29,8 @@ Or install it yourself as:
 
 ## Examples
 
-
 ```ruby
-require 'watsbot/watsbot'
+require 'watsbot'
 
 # config/initializers/watsbot.rb
 Watsbot::Configuration.new(
