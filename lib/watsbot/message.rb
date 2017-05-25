@@ -15,9 +15,9 @@ module Watsbot
 
     private
 
-      def call(uid, message, context={})
+      def call(uid, message, context=nil)
         state = State.instance
-        context = JSON.parse(state.fetch(uid)) rescue nil
+        context ||= JSON.parse(state.fetch(uid)) rescue nil
         response = call_api(message, context)
         change_state(state, uid, response)
         response
