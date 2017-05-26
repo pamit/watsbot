@@ -5,29 +5,30 @@ module Watsbot
   class Message < BaseResource
     include HTTParty
 
-    def send(uid, message, context={})
+    def send(uid, message, **args)
       raise "uid should be provided" and return if uid.nil? or uid.empty?
       raise "message should be provided" and return if message.nil? or message.empty?
 
-      future = Celluloid::Future.new { call(uid, message, context={}) }
+      future = Celluloid::Future.new { call(uid, message, args) }
       future.value
     end
 
     private
 
-      def call(uid, message, context=nil)
+      def call(uid, message, **args)
         state = State.instance
+        context = args.fetch(:context) if args.has_key?(:context)
         context ||= JSON.parse(state.fetch(uid)) rescue nil
         response = call_api(message, context)
-        change_state(state, uid, response)
+        change_state(state, uid, response, args)
         response
       end
 
-      def change_state(state, uid, response)
+      def change_state(state, uid, response, **args)
         if response.is_a? Response::Success
-          if response.context["system"]["branch_exited_reason"] == 'completed'
+          if args.has_key?(:terminated) and args.fetch(:terminated) == true
             state.delete(uid)
-          elsif response.context["system"]["branch_exited_reason"] != 'fallback'
+          else
             state.store(uid, response.context.to_json)
           end
         else

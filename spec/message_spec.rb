@@ -64,8 +64,17 @@ module Watsbot
           uid = SecureRandom.uuid
           message.send(uid, "Hi")
           context = JSON.parse Watsbot::State.instance.fetch(uid)
-          response = message.send(uid, "Good", context)
+          response = message.send(uid, "Good", {context: context})
           expect(Watsbot::State.instance.fetch(uid)).to eq(response.context.to_json)
+        end
+        it "terminates conversation" do
+          stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
+          message = Watsbot::Message.new(valid_config)
+          uid = SecureRandom.uuid
+          message.send(uid, "Hi")
+          context = JSON.parse Watsbot::State.instance.fetch(uid)
+          message.send(uid, "Good", {context: context, terminated: true})
+          expect(Watsbot::State.instance.fetch(uid)).to eq(nil)
         end
       end
     end
