@@ -47,7 +47,10 @@ watsbot = Watsbot::Message.new
 watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi")
 
 # To send a message with context
-watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { conversation_id: "...", ... })
+watsonbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { context: { conversation_id: "...", ... } })
+
+# To terminate a conversation (delete the state)
+watsonbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { terminated: true })
 ```
 
 ## Development
