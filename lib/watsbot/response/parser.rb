@@ -26,7 +26,7 @@ module Watsbot
       private
 
         def parse_error_message
-          @response_body["error"]["error"] rescue ""
+          @response_body["error"] || @response_body["error"]["error"] rescue ""
         end
 
         def parse_entities
