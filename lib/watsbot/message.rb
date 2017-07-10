@@ -17,8 +17,8 @@ module Watsbot
 
       def call(uid, message, **args)
         state = State.instance
-        context = args.fetch(:context) if args.has_key?(:context)
-        context ||= JSON.parse(state.fetch(uid)) rescue nil
+        context = JSON.parse(state.fetch(uid)) rescue {}
+        context.merge!(args.fetch(:context)) if args.has_key?(:context)
         response = call_api(message, context)
         change_state(state, uid, response, args)
         response
