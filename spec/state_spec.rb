@@ -63,5 +63,14 @@ module Watsbot
       end
     end
 
+    describe "#expire" do
+      it "returns no data" do
+        state = State.instance
+        uid = SecureRandom.uuid
+        state.store(uid, "hi")
+        state.expire(uid, 10)
+        expect(state.ttl(uid)).to be_between(1, 10)
+      end
+    end
   end
 end

@@ -25,5 +25,12 @@ module Watsbot
       @redis.del(key)
     end
 
+    def expire(key, ttl)
+      @redis.expire(key, ttl)
+    end
+    
+    def ttl(key)
+      @redis.ttl(key)
+    end
   end
 end
