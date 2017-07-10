@@ -53,7 +53,7 @@ watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { context: { user_name: "..
 watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { terminated: true })
 
 # To get the current state (context)
-Watsbot::State.instance.fetch("THE UNIQUE IDENTIFIER")
+watsonbot.state.fetch("THE UNIQUE IDENTIFIER")
 ```
 
 ## Development

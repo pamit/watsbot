@@ -4,6 +4,7 @@ require "celluloid"
 module Watsbot
   class Message < BaseResource
     include HTTParty
+    attr_reader :state
 
     def send(uid, message, **args)
       raise "uid should be provided" and return if uid.nil? or uid.empty?
@@ -16,23 +17,23 @@ module Watsbot
     private
 
       def call(uid, message, **args)
-        state = State.instance
-        context = JSON.parse(state.fetch(uid)) rescue {}
+        @state = State.instance
+        context = JSON.parse(@state.fetch(uid)) rescue {}
         context.merge!(args.fetch(:context)) if args.has_key?(:context)
         response = call_api(message, context)
-        change_state(state, uid, response, args)
+        change_state(uid, response, args)
         response
       end
 
-      def change_state(state, uid, response, **args)
+      def change_state(uid, response, **args)
         if response.is_a? Response::Success
           if args.has_key?(:terminated) and args.fetch(:terminated) == true
-            state.delete(uid)
+            @state.delete(uid)
           else
-            state.store(uid, response.context.to_json)
+            @state.store(uid, response.context.to_json)
           end
         else
-          state.delete(uid)
+          @state.delete(uid)
         end
       end
 

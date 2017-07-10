@@ -61,43 +61,43 @@ module Watsbot
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
           response = message.send(uid, "Hi")
-          expect(Watsbot::State.instance.fetch(uid)).to eq(response.context.to_json)
+          expect(message.state.fetch(uid)).to eq(response.context.to_json)
         end
         it "pass context" do
           stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
           message.send(uid, "Hi")
-          context = JSON.parse Watsbot::State.instance.fetch(uid)
+          context = JSON.parse message.state.fetch(uid)
           response = message.send(uid, "Good", {context: context})
-          expect(Watsbot::State.instance.fetch(uid)).to eq(response.context.to_json)
+          expect(message.state.fetch(uid)).to eq(response.context.to_json)
         end
         it "terminates conversation" do
           stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
           message.send(uid, "Hi")
-          context = JSON.parse Watsbot::State.instance.fetch(uid)
+          context = JSON.parse message.state.fetch(uid)
           message.send(uid, "Good", {context: context, terminated: true})
-          expect(Watsbot::State.instance.fetch(uid)).to eq(nil)
+          expect(message.state.fetch(uid)).to eq(nil)
         end
         it "sends custom context variable" do
           stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
           message.send(uid, "Hi", {context: {username: "pamit"}})
-          context = JSON.parse Watsbot::State.instance.fetch(uid)
-          expect(Watsbot::State.instance.fetch(uid)).not_to eq(nil)
+          context = JSON.parse message.state.fetch(uid)
+          expect(message.state.fetch(uid)).not_to eq(nil)
         end
         it "sends new message again" do
           stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
           message.send(uid, "Hi")
-          Watsbot::State.instance.delete(uid)
-          expect(Watsbot::State.instance.fetch(uid)).to eq(nil)
+          message.state.delete(uid)
+          expect(message.state.fetch(uid)).to eq(nil)
           message.send(uid, "Hi")
-          expect(Watsbot::State.instance.fetch(uid)).not_to eq(nil)
+          expect(message.state.fetch(uid)).not_to eq(nil)
         end
       end
     end
