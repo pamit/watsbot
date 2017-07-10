@@ -26,12 +26,17 @@ module Watsbot
         end
         it "raises error - blank uid" do
           message = Watsbot::Message.new(valid_config)
-          expect { message.send('', "Hi") }.to raise_error("uid should be provided")
+          expect { message.send("", "Hi") }.to raise_error("uid should be provided")
         end
         it "raises error - blank message" do
           message = Watsbot::Message.new(valid_config)
           uid = SecureRandom.uuid
-          expect { message.send(uid, '') }.to raise_error("message should be provided")
+          expect { message.send(uid, "") }.to raise_error("message should be provided")
+        end
+        it "raises error - wrong-formatted context" do
+          message = Watsbot::Message.new(valid_config)
+          uid = SecureRandom.uuid
+          expect { message.send(uid, "hi", {context: "{1}"}) }.to raise_error(TypeError)
         end
         it "responds with error state - no version" do
           stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=")).to_return(fixture_path("message/error.txt"))
@@ -40,7 +45,7 @@ module Watsbot
           Watsbot.configuration.version = nil
           response = message.send(uid, "Hi")
           expect(response.class).to eq(Response::Error)
-          Watsbot.configuration.version = ENV['WATSON_WORKSPACE_VERSION']
+          Watsbot.configuration.version = ENV["WATSON_WORKSPACE_VERSION"]
         end
       end
       context "valid" do
@@ -75,6 +80,24 @@ module Watsbot
           context = JSON.parse Watsbot::State.instance.fetch(uid)
           message.send(uid, "Good", {context: context, terminated: true})
           expect(Watsbot::State.instance.fetch(uid)).to eq(nil)
+        end
+        it "sends custom context variable" do
+          stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
+          message = Watsbot::Message.new(valid_config)
+          uid = SecureRandom.uuid
+          message.send(uid, "Hi", {context: {username: "pamit"}})
+          context = JSON.parse Watsbot::State.instance.fetch(uid)
+          expect(Watsbot::State.instance.fetch(uid)).not_to eq(nil)
+        end
+        it "sends new message again" do
+          stub_request(:post, watson_uri("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}")).to_return(fixture_path("message/created.txt"))
+          message = Watsbot::Message.new(valid_config)
+          uid = SecureRandom.uuid
+          message.send(uid, "Hi")
+          Watsbot::State.instance.delete(uid)
+          expect(Watsbot::State.instance.fetch(uid)).to eq(nil)
+          message.send(uid, "Hi")
+          expect(Watsbot::State.instance.fetch(uid)).not_to eq(nil)
         end
       end
     end

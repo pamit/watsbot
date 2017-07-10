@@ -46,11 +46,14 @@ watsbot = Watsbot::Message.new
 # To start a conversation/send a message without context
 watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi")
 
-# To send a message with context
-watsonbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { context: { conversation_id: "...", ... } })
+# To send a message with custom context variable (NOTICE THAT THE PREVIOUS CONTEXT IS SENT AUTOMATICALLY)
+watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { context: { user_name: "...", ... } })
 
 # To terminate a conversation (delete the state)
-watsonbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { terminated: true })
+watsbot.send("A UNIQUE IDENTIFIER, e.g. uuid", "Hi", { terminated: true })
+
+# To get the current state (context)
+Watsbot::State.instance.fetch("THE UNIQUE IDENTIFIER")
 ```
 
 ## Development
