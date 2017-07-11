@@ -38,7 +38,8 @@ Watsbot::Configuration.new(
   password:  ENV["WATSON_PASSWORD"],
   workspace: ENV["WATSON_WORKSPACE"],
   version:   ENV["WATSON_WORKSPACE_VERSION"],
-  redis_url: ENV["REDIS_URL"] # redis://127.0.0.1:6379/2
+  redis_url: ENV["REDIS_URL"], # redis://127.0.0.1:6379/2
+  ttl:       ENV["TTL"] # chat ttl in seconds
   )
 
 watsbot = Watsbot::Message.new
