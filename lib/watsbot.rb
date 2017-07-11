@@ -14,20 +14,20 @@ module Watsbot
   def self.root
     File.dirname __dir__
   end
-  
+
   class << self
     attr_writer :configuration
+  end
 
-    def configure(&block)
-      yield(configuration)
-    end
+  def self.configure
+    yield(configuration)
+  end
 
-    def configuration
-      @configuration ||= Configuration.new
-    end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
 
-    def reset
-      @configuration = Configuration.new
-    end
+  def self.reset
+    @configuration = Configuration.new
   end
 end

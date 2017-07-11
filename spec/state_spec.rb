@@ -72,5 +72,15 @@ module Watsbot
         expect(state.ttl(uid)).to be_between(1, 10)
       end
     end
+
+    describe "#ttl" do
+      it "returns ttl" do
+        state = State.instance
+        uid = SecureRandom.uuid
+        state.store(uid, "hi")
+        state.expire(uid, 10)
+        expect(state.ttl(uid)).to be_between(1, 10)
+      end
+    end    
   end
 end

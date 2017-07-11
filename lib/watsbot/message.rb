@@ -31,17 +31,26 @@ module Watsbot
             @state.delete(uid)
           else
             @state.store(uid, response.context.to_json)
+            set_ttl(uid)
           end
         else
           @state.delete(uid)
         end
       end
 
+      def set_ttl(uid)
+        return if config.ttl == -1
+        message_ttl = @state.ttl(uid)
+        if message_ttl == -1 or message_ttl == -2
+          @state.expire(uid, config.ttl)
+        end
+      end
+
       def call_api(message, context={})
         body = { input: { text: message }, context: context }
         options = { basic_auth: basic_auth, headers: headers, body: body.to_json }
-        response = self.class.post("/workspaces/#{Watsbot.configuration.workspace}/message?version=#{Watsbot.configuration.version}", options)
-        logger.info("/log/watsbot.log", "watson api _> #{options.inspect} -- #{response}")
+        response = self.class.post("/workspaces/#{config.workspace}/message?version=#{config.version}", options)
+        logger.info("/log/Watsbot.log", "watson api _> #{options.inspect} -- #{response}")
         parser = Watsbot::Response::Parser.new response
         parser.parse
       end
